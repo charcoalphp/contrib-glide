@@ -1,0 +1,33 @@
+# Charcoal
+# -------
+
+.env
+var/
+
+# Package Managers
+# -------
+
+vendor/
+
+# Logging
+# -------
+
+*.log
+error_log
+logs/
+reports/
+
+# Testing
+# -------
+
+test-reports/
+phpcs.xml
+phpstan.neon
+phpunit.xml
+psalm.xml
+
+# Caches
+# -------
+
+.phpunit.result.cache
+tmp/
