@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Charcoal">
+    <description>Charcoal Coding Standard</description>
+
+    <arg name="encoding" value="utf-8" />
+    <arg name="tab-width" value="4" />
+
+    <config name="ignore_warnings_on_exit" value="1" />
+
+    <rule ref="PSR12" />
+
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+    <rule ref="Generic.Classes.DuplicateClassName" />
+    <rule ref="Generic.Formatting.NoSpaceAfterCast" />
+    <rule ref="Generic.Functions.CallTimePassByReference" />
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+    <rule ref="Generic.PHP.ForbiddenFunctions" />
+    <rule ref="Generic.PHP.NoSilencedErrors" />
+    <rule ref="Generic.PHP.SAPIUsage" />
+
+    <rule ref="PEAR.Classes.ClassDeclaration" />
+
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing" />
+    <rule ref="Squiz.Classes.ClassDeclaration" />
+    <rule ref="Squiz.Classes.ClassFileName" />
+    <rule ref="Squiz.Formatting.OperatorBracket" />
+    <rule ref="Squiz.Functions.FunctionDuplicateArgument" />
+    <rule ref="Squiz.Functions.GlobalFunction" />
+    <rule ref="Squiz.Operators.ValidLogicalOperators" />
+    <rule ref="Squiz.PHP.CommentedOutCode" />
+    <rule ref="Squiz.PHP.Eval" />
+    <rule ref="Squiz.PHP.GlobalKeyword" />
+</ruleset>

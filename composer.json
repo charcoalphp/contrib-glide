@@ -1,0 +1,66 @@
+{
+    "type": "library",
+    "name": "charcoal/contrib-glide",
+    "description": "Provides support and utilities for Glide to manipulate images.",
+    "license": "MIT",
+    "keywords": [
+        "charcoal"
+    ],
+    "authors": [
+        {
+            "name": "Locomotive",
+            "homepage": "https://locomotive.ca"
+        },
+        {
+            "name": "Chauncey McAskill",
+            "email": "chauncey@mcaskill.ca"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "league/glide": "^1.0 || ^2.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5",
+        "seld/jsonlint": "^1.9",
+        "squizlabs/php_codesniffer": "^3.7",
+        "vimeo/psalm": "^4.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "Charcoal\\": "src/Charcoal"
+        }
+    },
+    "scripts": {
+        "fix": [
+            "@fix:phpcbf",
+            "@fix:psalter"
+        ],
+        "lint": [
+            "@lint:json",
+            "@lint:php",
+            "@lint:phpcs",
+            "@lint:phpstan",
+            "@lint:psalm"
+        ],
+        "test": [
+            "@test:phpunit"
+        ],
+        "fix:phpcbf": "phpcbf -ps --colors src/",
+        "fix:psalter": "psalter",
+        "lint:json": "find {config,metadata} -type f -iname '*.json' -print0 2> /dev/null | xargs -0 jsonlint -q",
+        "lint:php": "find {src,tests} -type f -iname '*.php' -print0 2> /dev/null | xargs -0 -n1 -P8 php -l 2> /dev/null | grep -v '^No syntax errors detected'; test $? -eq 1",
+        "lint:phpcs": "phpcs -ps --colors src/",
+        "lint:phpstan": "phpstan analyse",
+        "lint:psalm": "psalm",
+        "test:phpunit": "phpunit --coverage-text"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {},
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
