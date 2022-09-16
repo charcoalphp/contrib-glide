@@ -54,14 +54,14 @@ composer lint:psalm
 ### Testing
 
 By default, PHP tests are located in the [`tests`](tests) directory and developed
-with the [PHPUnit] framework.
+with the [Pest] framework, which internally uses the [PHPUnit] framework.
 
 Tests can be executing by running one of the following commands:
 
 ```shell
 composer test
-composer test:phpunit
-./vendor/bin/phpunit
+composer test:pest
+./vendor/bin/pest
 ```
 
 ---
@@ -75,6 +75,7 @@ composer test:phpunit
 [league/glide]:       https://glide.thephpleague.com/
 
 [//]: # (Development Links)
+[Pest]:              https://pestphp.com/
 [PHP-CLI/options]:   https://php.net/manual/en/features.commandline.options.php
 [PHP_CodeSniffer]:   https://github.com/squizlabs/PHP_CodeSniffer
 [PHPStan]:           https://phpstan.org/

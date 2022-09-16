@@ -21,8 +21,8 @@
         "league/glide": "^1.0 || ^2.0"
     },
     "require-dev": {
+        "pestphp/pest": "^1.22",
         "phpstan/phpstan": "^1.8",
-        "phpunit/phpunit": "^9.5",
         "seld/jsonlint": "^1.9",
         "squizlabs/php_codesniffer": "^3.7",
         "vimeo/psalm": "^4.23"
@@ -45,7 +45,7 @@
             "@lint:psalm"
         ],
         "test": [
-            "@test:phpunit"
+            "@test:pest"
         ],
         "fix:phpcbf": "phpcbf -ps --colors src/",
         "fix:psalter": "psalter",
@@ -54,12 +54,14 @@
         "lint:phpcs": "phpcs -ps --colors src/",
         "lint:phpstan": "phpstan analyse",
         "lint:psalm": "psalm",
-        "test:phpunit": "phpunit --coverage-text"
+        "test:pest": "pest --coverage"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "allow-plugins": {},
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
         "preferred-install": "dist",
         "sort-packages": true
     }
