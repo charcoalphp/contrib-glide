@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @param mixed $value the Value
+ *
+ * @return Expectation|Extendable
+ * @psalm-return (func_num_args() is 0 ? \Pest\Support\Extendable : \Pest\Expectation)
+ */
+function expect($value = null)
+{
+}

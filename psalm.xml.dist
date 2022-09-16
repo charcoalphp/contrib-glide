@@ -2,18 +2,41 @@
 <psalm xmlns="https://getpsalm.org/schema/config"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-       errorBaseline="psalm-baseline.xml"
        errorLevel="6"
-       resolveFromConfigFile="true">
+       resolveFromConfigFile="true" errorBaseline="psalm-baseline.xml">
     <projectFiles>
         <directory name="src" />
         <directory name="tests" />
-        <ignoreFiles>
-            <directory name="vendor" />
-        </ignoreFiles>
     </projectFiles>
 
+    <stubs>
+        <file name="stubs/pest.php.stub" />
+        <file name="stubs/psr-7.php.stub" />
+        <file name="stubs/slim.php.stub" />
+    </stubs>
+
     <issueHandlers>
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </InternalMethod>
+        <MissingClosureReturnType>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </MissingClosureReturnType>
+        <PossiblyUndefinedMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyUndefinedMethod>
         <PropertyNotSetInConstructor errorLevel="suppress" />
+        <RedundantPropertyInitializationCheck errorLevel="suppress" />
+        <UndefinedMagicPropertyFetch>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UndefinedMagicPropertyFetch>
     </issueHandlers>
 </psalm>

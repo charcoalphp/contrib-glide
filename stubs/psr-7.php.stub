@@ -1,0 +1,271 @@
+<?php
+
+namespace Psr\Http\Message {
+    interface MessageInterface
+    {
+        /**
+         * @return string
+         */
+        public function getProtocolVersion();
+        /**
+         * @param string $version
+         *
+         * @return static
+         */
+        public function withProtocolVersion($version);
+        /**
+         * @return array<array<string>>
+         */
+        public function getHeaders();
+        /**
+         * @param string $name
+         *
+         * @return bool
+         */
+        public function hasHeader($name);
+        /**
+         * @param string $name
+         *
+         * @return array<string>
+         */
+        public function getHeader($name);
+        /**
+         * @param string $name
+         *
+         * @return string
+         */
+        public function getHeaderLine($name);
+        /**
+         * @param string $name
+         * @param array<string>|string $value
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withHeader($name, $value);
+        /**
+         * @param string $name
+         * @param array<string>|string $value
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withAddedHeader($name, $value);
+        /**
+         * @param string $name
+         *
+         * @return static
+         */
+        public function withoutHeader($name);
+        /**
+         * @return StreamInterface
+         */
+        public function getBody();
+        /**
+         * @param StreamInterface $body
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withBody(\Psr\Http\Message\StreamInterface $body);
+    }
+    interface ResponseInterface extends \Psr\Http\Message\MessageInterface
+    {
+        /**
+         * @return int
+         */
+        public function getStatusCode();
+        /**
+         * @param int $code
+         * @param string $reasonPhrase
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withStatus($code, $reasonPhrase = '');
+        /**
+         * @return string
+         */
+        public function getReasonPhrase();
+    }
+    interface StreamInterface
+    {
+        /**
+         * @return string
+         */
+        public function __toString();
+        /**
+         * @return void
+         */
+        public function close();
+        /**
+         * @return null|resource
+         */
+        public function detach();
+        /**
+         * @return int|null
+         */
+        public function getSize();
+        /**
+         * @return int
+         *
+         * @throws \RuntimeException
+         */
+        public function tell();
+        /**
+         * @return bool
+         */
+        public function eof();
+        /**
+         * @return bool
+         */
+        public function isSeekable();
+        /**
+         * @param int $offset
+         * @param int $whence
+         *
+         * @return void
+         *
+         * @throws \RuntimeException
+         */
+        public function seek($offset, $whence);
+        /**
+         * @return void
+         *
+         * @throws \RuntimeException
+         */
+        public function rewind();
+        /**
+         * @return bool
+         */
+        public function isWritable();
+        /**
+         * @param string $string
+         *
+         * @return int
+         *
+         * @throws \RuntimeException
+         */
+        public function write($string);
+        /**
+         * @return bool
+         */
+        public function isReadable();
+        /**
+         * @param int $length
+         *
+         * @return string
+         *
+         * @throws \RuntimeException
+         */
+        public function read($length);
+        /**
+         * @return string
+         *
+         * @throws \RuntimeException
+         */
+        public function getContents();
+        /**
+         * @param null|string $key
+         *
+         * @return array|mixed|null
+         */
+        public function getMetadata($key = null);
+    }
+    interface UriInterface
+    {
+        /**
+         * @return string
+         */
+        public function getScheme();
+        /**
+         * @return string
+         */
+        public function getAuthority();
+        /**
+         * @return string
+         */
+        public function getUserInfo();
+        /**
+         * @return string
+         */
+        public function getHost();
+        /**
+         * @return int|null
+         */
+        public function getPort();
+        /**
+         * @return string
+         */
+        public function getPath();
+        /**
+         * @return string
+         */
+        public function getQuery();
+        /**
+         * @return string
+         */
+        public function getFragment();
+        /**
+         * @param string $scheme
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withScheme($scheme);
+        /**
+         * @param string $user
+         * @param null|string $password
+         *
+         * @return static
+         */
+        public function withUserInfo($user, $password = null);
+        /**
+         * @param string $host
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withHost($host);
+        /**
+         * @param int|null $port
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withPort($port);
+        /**
+         * @param string $path
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withPath($path);
+        /**
+         * @param string $query
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function withQuery($query);
+        /**
+         * @param string $fragment
+         *
+         * @return static
+         */
+        public function withFragment($fragment);
+        /**
+         * @return string
+         */
+        public function __toString();
+    }
+}

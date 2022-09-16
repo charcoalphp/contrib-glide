@@ -32,6 +32,11 @@
             "Charcoal\\": "src/Charcoal"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Charcoal\\Image\\Glide\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "fix": [
             "@fix:phpcbf",

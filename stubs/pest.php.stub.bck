@@ -1,0 +1,438 @@
+<?php
+
+namespace Pest {
+    /**
+     * @template-covariant TValue as mixed
+     */
+    class Expectation
+    {
+        /**
+         * @var mixed
+         */
+        public $value;
+        /**
+         * @var \SebastianBergmann\Exporter\Exporter|null
+         */
+        private $exporter;
+        /**
+         * @param TValue $value
+         */
+        public function __construct($value)
+        {
+        }
+        /**
+         * @param TValue $value
+         *
+         * @return Expectation<TValue>
+         */
+        public function and($value) : \Pest\Expectation
+        {
+        }
+        public function json() : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $arguments
+         *
+         * @return never
+         */
+        public function dd(...$arguments)
+        {
+        }
+        /**
+         * @param mixed $arguments
+         */
+        public function ray(...$arguments) : \Pest\Expectation
+        {
+        }
+        public function not() : \Pest\OppositeExpectation
+        {
+        }
+        public function each($callback = null) : \Pest\Each
+        {
+        }
+        /**
+         * @template TSequenceValue as mixed
+         *
+         * @param TSequenceValue|callable(Expectation, Expectation):void $callbacks
+         */
+        public function sequence(...$callbacks) : \Pest\Expectation
+        {
+        }
+        /**
+         * @template TMatchSubject as array-key
+         *
+         * @param TMatchSubject|callable():TMatchSubject $subject
+         * @param array<TMatchSubject, TValue|callable(Expectation<TValue>):mixed> $expressions
+         */
+        public function match($subject, array $expressions) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param bool|callable():bool $condition
+         * @param callable(Expectation<TValue>):mixed $callback
+         */
+        public function unless($condition, $callback) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param bool|callable():bool $condition
+         * @param callable(Expectation<TValue>):mixed $callback
+         */
+        public function when($condition, $callback) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $expected
+         */
+        public function toBe($expected) : \Pest\Expectation
+        {
+        }
+        public function toBeEmpty() : \Pest\Expectation
+        {
+        }
+        public function toBeTrue() : \Pest\Expectation
+        {
+        }
+        public function toBeTruthy() : \Pest\Expectation
+        {
+        }
+        public function toBeFalse() : \Pest\Expectation
+        {
+        }
+        public function toBeFalsy() : \Pest\Expectation
+        {
+        }
+        /**
+         * @param float|int $expected
+         */
+        public function toBeGreaterThan($expected) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param float|int $expected
+         */
+        public function toBeGreaterThanOrEqual($expected) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param float|int $expected
+         */
+        public function toBeLessThan($expected) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param float|int $expected
+         */
+        public function toBeLessThanOrEqual($expected) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $needles
+         */
+        public function toContain(...$needles) : \Pest\Expectation
+        {
+        }
+        public function toStartWith(string $expected) : \Pest\Expectation
+        {
+        }
+        public function toEndWith(string $expected) : \Pest\Expectation
+        {
+        }
+        public function toHaveLength(int $number) : \Pest\Expectation
+        {
+        }
+        public function toHaveCount(int $count) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed|null $value
+         */
+        public function toHaveProperty(string $name, $value = null) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param iterable<array-key, string> $names
+         */
+        public function toHaveProperties(iterable $names) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $expected
+         */
+        public function toEqual($expected) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $expected
+         */
+        public function toEqualCanonicalizing($expected) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $expected
+         */
+        public function toEqualWithDelta($expected, float $delta) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param iterable<int|string, mixed> $values
+         */
+        public function toBeIn(iterable $values) : \Pest\Expectation
+        {
+        }
+        public function toBeInfinite() : \Pest\Expectation
+        {
+        }
+        /**
+         * @param string $class
+         */
+        public function toBeInstanceOf($class) : \Pest\Expectation
+        {
+        }
+        public function toBeArray() : \Pest\Expectation
+        {
+        }
+        public function toBeBool() : \Pest\Expectation
+        {
+        }
+        public function toBeCallable() : \Pest\Expectation
+        {
+        }
+        public function toBeFloat() : \Pest\Expectation
+        {
+        }
+        public function toBeInt() : \Pest\Expectation
+        {
+        }
+        public function toBeIterable() : \Pest\Expectation
+        {
+        }
+        public function toBeNumeric() : \Pest\Expectation
+        {
+        }
+        public function toBeObject() : \Pest\Expectation
+        {
+        }
+        public function toBeResource() : \Pest\Expectation
+        {
+        }
+        public function toBeScalar() : \Pest\Expectation
+        {
+        }
+        public function toBeString() : \Pest\Expectation
+        {
+        }
+        public function toBeJson() : \Pest\Expectation
+        {
+        }
+        public function toBeNan() : \Pest\Expectation
+        {
+        }
+        public function toBeNull() : \Pest\Expectation
+        {
+        }
+        /**
+         * @param int|string $key
+         * @param mixed|null $value
+         */
+        public function toHaveKey($key, $value = null) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param array<int, int|string> $keys
+         */
+        public function toHaveKeys(array $keys) : \Pest\Expectation
+        {
+        }
+        public function toBeDirectory() : \Pest\Expectation
+        {
+        }
+        public function toBeReadableDirectory() : \Pest\Expectation
+        {
+        }
+        public function toBeWritableDirectory() : \Pest\Expectation
+        {
+        }
+        public function toBeFile() : \Pest\Expectation
+        {
+        }
+        public function toBeReadableFile() : \Pest\Expectation
+        {
+        }
+        public function toBeWritableFile() : \Pest\Expectation
+        {
+        }
+        /**
+         * @param array<int|string, mixed> $array
+         */
+        public function toMatchArray($array) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param array<string, mixed>|object $object
+         */
+        public function toMatchObject($object) : \Pest\Expectation
+        {
+        }
+        public function toMatch(string $expression) : \Pest\Expectation
+        {
+        }
+        public function toMatchConstraint(\PHPUnit\Framework\Constraint\Constraint $constraint) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param \Closure(\Throwable):mixed|string $exception
+         */
+        public function toThrow($exception, ?string $exceptionMessage = null) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param mixed $value
+         */
+        public function export($value) : string
+        {
+        }
+        /**
+         * @param array<int, mixed> $parameters
+         *
+         * @return HigherOrderExpectation|mixed
+         */
+        public function __call(string $method, array $parameters)
+        {
+        }
+        /**
+         * @return Expectation|HigherOrderExpectation
+         */
+        public function __get(string $name)
+        {
+        }
+    }
+    class HigherOrderExpectation
+    {
+        /**
+         * @var Expectation
+         */
+        private $original;
+        /**
+         * @var Each|Expectation
+         */
+        private $expectation;
+        /**
+         * @var bool
+         */
+        private $opposite;
+        /**
+         * @var bool
+         */
+        private $shouldReset;
+        /**
+         * @var string
+         */
+        private $name;
+        /**
+         * @param mixed $value
+         */
+        public function __construct(\Pest\Expectation $original, $value)
+        {
+        }
+        public function not() : \Pest\HigherOrderExpectation
+        {
+        }
+        /**
+         * @template TValue as mixed
+         *
+         * @param TValue $value
+         *
+         * @return Expectation<TValue>
+         */
+        public function and($value) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param array<int, mixed> $arguments
+         */
+        public function __call(string $name, array $arguments) : \Pest\HigherOrderExpectation
+        {
+        }
+        public function __get(string $name) : \Pest\HigherOrderExpectation
+        {
+        }
+        public function expectationHasMethod(string $name) : bool
+        {
+        }
+        /**
+         * @return mixed
+         */
+        public function getValue()
+        {
+        }
+        /**
+         * @param array<int, mixed> $arguments
+         */
+        public function performAssertion(string $name, array $arguments) : \Pest\HigherOrderExpectation
+        {
+        }
+    }
+    class OppositeExpectation
+    {
+        /**
+         * @var Expectation
+         */
+        private $original;
+        public function __construct(\Pest\Expectation $original)
+        {
+        }
+        /**
+         * @param array<int, int|string> $keys
+         */
+        public function toHaveKeys(array $keys) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param array<int, mixed> $arguments
+         *
+         * @return Expectation
+         */
+        public function __call(string $name, array $arguments) : \Pest\Expectation
+        {
+        }
+        /**
+         * @return Expectation
+         */
+        public function __get(string $name) : \Pest\Expectation
+        {
+        }
+        /**
+         * @param array<int, mixed> $arguments
+         *
+         * @return never
+         */
+        public function throwExpectationFailedException(string $name, array $arguments = array())
+        {
+        }
+    }
+}
+
+namespace Pest\Support {
+    /**
+     * @property-read self $not
+     * @property-read self $resolve
+     */
+    class Extendable
+    {
+        /**
+         * @var string
+         */
+        private $extendableClass;
+        public function __construct(string $extendableClass)
+        {
+        }
+        /**
+         * @return void
+         */
+        public function extend(string $name, \Closure $extend)
+        {
+        }
+    }
+}
