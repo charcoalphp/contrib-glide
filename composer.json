@@ -16,9 +16,20 @@
             "email": "chauncey@mcaskill.ca"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/charcoalphp/config"
+        }
+    ],
+    "replace": {
+        "league/glide-slim": "^1.0"
+    },
     "require": {
         "php": "^7.4 || ^8.0",
-        "league/glide": "^1.0 || ^2.0"
+        "charcoal/config": "^3.1",
+        "league/glide": "^1.0 || ^2.0",
+        "pimple/pimple": "^3.5"
     },
     "require-dev": {
         "pestphp/pest": "^1.22",
