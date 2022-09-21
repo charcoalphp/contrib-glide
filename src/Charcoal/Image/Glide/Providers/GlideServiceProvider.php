@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Charcoal\Image\Glide\Providers;
 
+use Charcoal\Image\Glide\Bridge\Mustache\GlideHelpers as MustacheGlideHelpers;
 use Charcoal\Image\Glide\Config\GlideConfig;
 use Charcoal\Image\Glide\Factory\ResponseFactoryDiscovery;
 use Charcoal\Image\Glide\Manager\GlideManager;
@@ -38,5 +39,37 @@ class GlideServiceProvider implements ServiceProviderInterface
         };
 
         $container['glide/response/factory'] = fn (): ?ResponseFactoryInterface => ResponseFactoryDiscovery::find();
+
+        $this->registerMustacheExtensions($container);
+    }
+
+    /**
+     * Register the contrib's services.
+     *
+     * @param  Container $container The service locator.
+     * @return void
+     */
+    public function registerMustacheExtensions(Container $container)
+    {
+        $container['glide/mustache/helpers'] = function (Container $container): MustacheGlideHelpers {
+            return new MustacheGlideHelpers(
+                $container['glide/manager']
+            );
+        };
+
+        if (!isset($container['view/mustache/helpers'])) {
+            /**
+             * @return array<string, mixed>
+             */
+            $container['view/mustache/helpers'] = fn (): array => [];
+        }
+
+        /**
+         * @param  array<string, mixed> $helpers
+         * @return array<string, mixed>
+         */
+        $container->extend('view/mustache/helpers', function (array $helpers, Container $container): array {
+            return array_merge($helpers, $container['glide/mustache/helpers']->toArray());
+        });
     }
 }
