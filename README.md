@@ -79,7 +79,7 @@ You can also configure multiple servers, each of which is entirely separate:
                         "small_hero": [
                             "w": 200,
                             "h": 200,
-                            "fit": 'crop',
+                            "fit": "crop",
                             "nil": null,
                         ],
                     ],
@@ -197,8 +197,8 @@ composer test:pest
 [seld/jsonlint]:     https://github.com/Seldaek/jsonlint
 
 [//]: # (Badge Links)
-[github-actions]:    https://github.com/charcoalphp/boilerplate/actions
-[github-badge]:      https://img.shields.io/github/workflow/status/charcoalphp/boilerplate/Test?label=build
-[license-badge]:     https://img.shields.io/packagist/l/charcoal/boilerplate.svg?style=flat-square
-[php-badge]:         https://img.shields.io/packagist/php-v/charcoal/boilerplate?style=flat-square&logo=php
-[version-badge]:     https://img.shields.io/packagist/v/charcoal/boilerplate.svg?style=flat-square&logo=packagist
+[github-actions]:    https://github.com/charcoalphp/contrib-glide/actions
+[github-badge]:      https://img.shields.io/github/workflow/status/charcoalphp/contrib-glide/CI?label=build
+[license-badge]:     https://img.shields.io/packagist/l/charcoal/contrib-glide.svg?style=flat-square
+[php-badge]:         https://img.shields.io/packagist/php-v/charcoal/contrib-glide?style=flat-square&logo=php
+[version-badge]:     https://img.shields.io/packagist/v/charcoal/contrib-glide.svg?style=flat-square&logo=packagist
