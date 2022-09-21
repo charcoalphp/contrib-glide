@@ -7,6 +7,7 @@ namespace Charcoal\Image\Glide\Bridge\Twig\Extension;
 use Charcoal\Image\Glide\Config\Manipulations;
 use Charcoal\Image\Glide\Manager\GlideManager;
 use Charcoal\Image\Glide\Mixin\GlideManagerTrait;
+use Charcoal\Image\Glide\Bridge\Twig\TokenParser\GlideTokenParser;
 use League\Glide\Urls\UrlBuilder;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -37,6 +38,14 @@ class GlideExtension extends AbstractExtension
         return [
             // Usage: `{{ glide('image.jpg', preset='thumbnail',...) }}`
             new TwigFunction('glide', [ $this, 'buildRequestUrl' ], [ 'is_variadic' => true ]),
+        ];
+    }
+
+    public function getTokenParsers(): array
+    {
+        return [
+            // Usage: `{% glide path='image.jpg' %}<img src="{{ url }}" width="{{ width }}" height="{{ height }}">{% endglide %}`
+            new GlideTokenParser(),
         ];
     }
 
