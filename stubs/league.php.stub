@@ -1,0 +1,23 @@
+<?php
+
+namespace League\Flysystem {
+    interface FilesystemOperator
+    {
+    }
+}
+namespace League\Glide\Responses {
+    class SlimResponseFactory extends \League\Glide\Responses\PsrResponseFactory
+    {
+        /**
+         * @var \Psr\Http\Message\ResponseInterface
+         */
+        protected $response;
+        /**
+         * @var \Closure
+         */
+        protected $streamCallback;
+        public function __construct()
+        {
+        }
+    }
+}

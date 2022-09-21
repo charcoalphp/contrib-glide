@@ -6,8 +6,12 @@ parameters:
   paths:
     - src/
     - tests/
+  excludePaths:
+    - stubs/
+    - vendor/
   scanFiles:
-    - stubs/slim.php.stub
-  stubFiles:
-    - stubs/psr-7.php.stub
-    - stubs/slim.php.stub
+    - stubs/charcoal.php.stub
+    - stubs/guzzle.php.stub
+    - stubs/league.php.stub
+    - stubs/slim-v3.php.stub
+    - stubs/slim-v4.php.stub

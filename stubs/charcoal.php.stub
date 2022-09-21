@@ -1,0 +1,742 @@
+<?php
+
+namespace Charcoal\App\Action {
+    class AbstractAction extends \Charcoal\Config\AbstractEntity implements \Psr\Log\LoggerAwareInterface
+    {
+        use \Psr\Log\LoggerAwareTrait;
+        public const MODE_JSON = 'json';
+        public const MODE_XML = 'xml';
+        public const MODE_REDIRECT = 'redirect';
+        public const MODE_EVENT_STREAM = 'event-stream';
+        public const DEFAULT_MODE = 'json';
+        /**
+         * @var string
+         */
+        private $mode;
+        /**
+         * @var bool
+         */
+        private $success;
+        /**
+         * @var null|string
+         */
+        private $successUrl;
+        /**
+         * @var null|string
+         */
+        private $failureUrl;
+        /**
+         * @param \ArrayAccess|array|null $data
+         */
+        public function __construct($data = null)
+        {
+        }
+        /**
+         * @param \Psr\Http\Message\RequestInterface $request
+         *
+         * @return bool
+         */
+        public function init(\Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function __invoke(\Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+        /**
+         * @param string $mode
+         *
+         * @return ActionInterface
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setMode($mode)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function mode()
+        {
+        }
+        /**
+         * @param bool $success
+         *
+         * @return ActionInterface
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setSuccess($success)
+        {
+        }
+        /**
+         * @return bool
+         */
+        public function success()
+        {
+        }
+        /**
+         * @param null|string $url
+         *
+         * @return ActionInterface
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setSuccessUrl($url)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function successUrl()
+        {
+        }
+        /**
+         * @param null|string $url
+         *
+         * @return AbstractAction
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setFailureUrl($url)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function failureUrl()
+        {
+        }
+        /**
+         * @return string
+         */
+        public function redirectUrl()
+        {
+        }
+        /**
+         * @return array|mixed
+         */
+        public abstract function results();
+        /**
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public abstract function run(\Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response);
+        /**
+         * @param \Pimple\Container $container
+         *
+         * @return void
+         */
+        protected function setDependencies(\Pimple\Container $container)
+        {
+        }
+    }
+    interface ActionInterface
+    {
+        /**
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function __invoke(\Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response);
+        /**
+         * @param array $data
+         *
+         * @return ActionInterface
+         */
+        public function setData(array $data);
+        /**
+         * @param string $mode
+         *
+         * @return ActionInterface
+         */
+        public function setMode($mode);
+        /**
+         * @return string
+         */
+        public function mode();
+        /**
+         * @param bool $success
+         *
+         * @return ActionInterface
+         */
+        public function setSuccess($success);
+        /**
+         * @return bool
+         */
+        public function success();
+        /**
+         * @param string $url
+         *
+         * @return ActionInterface
+         */
+        public function setSuccessUrl($url);
+        /**
+         * @return string
+         */
+        public function successUrl();
+        /**
+         * @param string $url
+         *
+         * @return ActionInterface
+         */
+        public function setFailureUrl($url);
+        /**
+         * @return string
+         */
+        public function failureUrl();
+        /**
+         * @return string
+         */
+        public function redirectUrl();
+        /**
+         * @return array
+         */
+        public function results();
+        /**
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function run(\Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response);
+        /**
+         * @param \Psr\Http\Message\RequestInterface $request
+         *
+         * @return bool
+         */
+        public function init(\Psr\Http\Message\RequestInterface $request);
+    }
+}
+
+namespace Charcoal\App\Route {
+    class ActionRoute implements \Charcoal\App\Route\RouteInterface, \Charcoal\Config\ConfigurableInterface
+    {
+        /**
+         * @param array $data
+         */
+        public function __construct(array $data)
+        {
+        }
+        /**
+         * @param mixed|null $data
+         *
+         * @return ActionRouteConfig
+         */
+        public function createConfig($data = null)
+        {
+        }
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function __invoke(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+    }
+    class ActionRouteConfig extends \Charcoal\App\Route\RouteConfig
+    {
+        public const DEFAULT_SEPARATOR = '.';
+        /**
+         * @var array
+         */
+        private $actionData;
+        /**
+         * @param array $actionData
+         *
+         * @return ActionRouteConfig
+         */
+        public function setActionData(array $actionData)
+        {
+        }
+        /**
+         * @return array
+         */
+        public function actionData()
+        {
+        }
+    }
+    class RouteConfig extends \Charcoal\Config\AbstractConfig
+    {
+        public const DEFAULT_SEPARATOR = '.';
+        /**
+         * @var string
+         */
+        private $ident;
+        /**
+         * @var string
+         */
+        private $route;
+        /**
+         * @var array<string>
+         */
+        private $methods;
+        /**
+         * @var string
+         */
+        private $controller;
+        /**
+         * @var array<string>
+         */
+        private $groups;
+        /**
+         * @var array
+         */
+        private $headers;
+        /**
+         * @return array
+         */
+        public static function defaultRouteTypes()
+        {
+        }
+        /**
+         * @param string $ident
+         *
+         * @return RouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setIdent($ident)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function ident()
+        {
+        }
+        /**
+         * @param string $pattern
+         *
+         * @return RouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setRoute($pattern)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function route()
+        {
+        }
+        /**
+         * @param array<string> $groups
+         *
+         * @return RouteConfig
+         */
+        public function setGroups(array $groups)
+        {
+        }
+        /**
+         * @param string $group
+         *
+         * @return RouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function addGroup($group)
+        {
+        }
+        /**
+         * @return array
+         */
+        public function groups()
+        {
+        }
+        /**
+         * @param array $headers
+         *
+         * @return RouteConfig
+         */
+        public function setHeaders(array $headers)
+        {
+        }
+        /**
+         * @param string $name
+         * @param string $val
+         *
+         * @return static
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function addHeader($name, $val)
+        {
+        }
+        /**
+         * @return array
+         */
+        public function headers()
+        {
+        }
+        /**
+         * @param string $controller
+         *
+         * @return RouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setController($controller)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function controller()
+        {
+        }
+        /**
+         * @param array<string> $methods
+         *
+         * @return RouteConfig
+         */
+        public function setMethods(array $methods)
+        {
+        }
+        /**
+         * @param string $method
+         *
+         * @return RouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function addMethod($method)
+        {
+        }
+        /**
+         * @return array<string>
+         */
+        public function methods()
+        {
+        }
+    }
+    interface RouteInterface
+    {
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function __invoke(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response);
+    }
+    class RouteManager implements \Charcoal\Config\ConfigurableInterface
+    {
+        /**
+         * @var \Charcoal\App\App
+         */
+        private $app;
+        /**
+         * @param array $data
+         */
+        public function __construct(array $data)
+        {
+        }
+        /**
+         * @return void
+         */
+        public function setupRoutes()
+        {
+        }
+        /**
+         * @param string $routeIdent
+         * @param \ArrayAccess|array $templateConfig
+         *
+         * @return \Slim\Interfaces\RouteInterface
+         */
+        public function setupTemplate($routeIdent, $templateConfig)
+        {
+        }
+        /**
+         * @param string $routeIdent
+         * @param \ArrayAccess|array $actionConfig
+         *
+         * @return \Slim\Interfaces\RouteInterface
+         */
+        public function setupAction($routeIdent, $actionConfig)
+        {
+        }
+        /**
+         * @param string $routeIdent
+         * @param \ArrayAccess|array $scriptConfig
+         *
+         * @return \Slim\Interfaces\RouteInterface
+         */
+        public function setupScript($routeIdent, $scriptConfig)
+        {
+        }
+    }
+    class ScriptRoute implements \Charcoal\Config\ConfigurableInterface, \Charcoal\App\Route\RouteInterface
+    {
+        /**
+         * @param array $data
+         */
+        public function __construct(array $data)
+        {
+        }
+        /**
+         * @param mixed|null $data
+         *
+         * @return ScriptRouteConfig
+         */
+        public function createConfig($data = null)
+        {
+        }
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function __invoke(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+    }
+    class ScriptRouteConfig extends \Charcoal\App\Route\RouteConfig
+    {
+        public const DEFAULT_SEPARATOR = '.';
+    }
+    class TemplateRoute implements \Charcoal\Config\ConfigurableInterface, \Charcoal\App\Route\RouteInterface
+    {
+        /**
+         * @param array $data
+         */
+        public function __construct(array $data)
+        {
+        }
+        /**
+         * @param mixed|null $data
+         *
+         * @return TemplateRouteConfig
+         */
+        public function createConfig($data = null)
+        {
+        }
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         * @param \Psr\Http\Message\ResponseInterface $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function __invoke(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response)
+        {
+        }
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         *
+         * @return string
+         */
+        protected function templateContent(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         *
+         * @return string
+         */
+        protected function renderTemplate(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * @param \Pimple\Container $container
+         * @param \Psr\Http\Message\RequestInterface $request
+         *
+         * @return string
+         */
+        protected function createTemplate(\Pimple\Container $container, \Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * @param string $redirection
+         * @param \Psr\Http\Message\RequestInterface $request
+         *
+         * @return \Slim\Http\Uri|null
+         */
+        protected function parseRedirect($redirection, \Psr\Http\Message\RequestInterface $request)
+        {
+        }
+        /**
+         * @return bool
+         */
+        protected function cacheEnabled()
+        {
+        }
+        /**
+         * @return int
+         */
+        protected function cacheTtl()
+        {
+        }
+        /**
+         * @return string
+         */
+        protected function cacheIdent()
+        {
+        }
+    }
+    class TemplateRouteConfig extends \Charcoal\App\Route\RouteConfig
+    {
+        public const DEFAULT_SEPARATOR = '.';
+        /**
+         * @var null|string
+         */
+        private $template;
+        /**
+         * @var null|string
+         */
+        private $engine;
+        /**
+         * @var array
+         */
+        private $templateData;
+        /**
+         * @var string
+         */
+        private $redirect;
+        /**
+         * @var int
+         */
+        private $redirectMode;
+        /**
+         * @var bool
+         */
+        private $cache;
+        /**
+         * @var int
+         */
+        private $cacheTtl;
+        /**
+         * @param null|string $template
+         *
+         * @return TemplateRouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setTemplate($template)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function template()
+        {
+        }
+        /**
+         * @return null|string
+         */
+        public function defaultController()
+        {
+        }
+        /**
+         * @param null|string $engine
+         *
+         * @return TemplateRouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setEngine($engine)
+        {
+        }
+        /**
+         * @return string
+         */
+        public function engine()
+        {
+        }
+        /**
+         * @return string
+         */
+        public function defaultEngine()
+        {
+        }
+        /**
+         * @param array $templateData
+         *
+         * @return TemplateRouteConfig
+         */
+        public function setTemplateData(array $templateData)
+        {
+        }
+        /**
+         * @return array
+         */
+        public function templateData()
+        {
+        }
+        /**
+         * @param array<string>|string $url
+         *
+         * @return TemplateRouteConfig
+         */
+        public function setRedirect($url)
+        {
+        }
+        /**
+         * @return array<string>|string
+         */
+        public function redirect()
+        {
+        }
+        /**
+         * @param int|string $redirectMode
+         *
+         * @return TemplateRouteConfig
+         *
+         * @throws \InvalidArgumentException
+         */
+        public function setRedirectMode($redirectMode)
+        {
+        }
+        /**
+         * @return int
+         */
+        public function redirectMode()
+        {
+        }
+        /**
+         * @param bool $cache
+         *
+         * @return TemplateRouteConfig
+         */
+        public function setCache($cache)
+        {
+        }
+        /**
+         * @return bool
+         */
+        public function cache()
+        {
+        }
+        /**
+         * @param int $ttl
+         *
+         * @return TemplateRouteConfig
+         */
+        public function setCacheTtl($ttl)
+        {
+        }
+        /**
+         * @return int
+         */
+        public function cacheTtl()
+        {
+        }
+    }
+}

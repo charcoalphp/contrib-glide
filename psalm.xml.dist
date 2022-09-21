@@ -7,12 +7,20 @@
     <projectFiles>
         <directory name="src" />
         <directory name="tests" />
+        <ignoreFiles>
+            <directory name="stubs" />
+            <directory name="vendor" />
+        </ignoreFiles>
     </projectFiles>
 
     <stubs>
+        <file name="stubs/charcoal.php.stub" />
+        <file name="stubs/guzzle.php.stub" />
+        <file name="stubs/league.php.stub" />
         <file name="stubs/pest.php.stub" />
         <file name="stubs/psr-7.php.stub" />
-        <file name="stubs/slim.php.stub" />
+        <file name="stubs/slim-v3.php.stub" />
+        <file name="stubs/slim-v4.php.stub" />
     </stubs>
 
     <issueHandlers>
