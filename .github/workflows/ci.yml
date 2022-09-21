@@ -5,10 +5,9 @@ on:
     paths:
       - '.github/**'
       - 'src/**'
+      - 'stubs/**'
       - 'tests/**'
       - 'composer.*'
-      - '*.neon.dist'
-      - '*.xml.dist'
     branches:
       - main
     tags-ignore:
@@ -17,10 +16,9 @@ on:
     paths:
       - '.github/**'
       - 'src/**'
+      - 'stubs/**'
       - 'tests/**'
       - 'composer.*'
-      - '*.neon.dist'
-      - '*.xml.dist'
     branches:
       - main
     tags-ignore:
