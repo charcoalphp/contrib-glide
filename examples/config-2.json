@@ -1,0 +1,33 @@
+{
+    "apis": {
+        "glide": {
+            "signature": "…",
+            "servers": {
+                "uploads": {
+                    "source": "%app.public_path%/uploads"
+                    "cache": "%app.cache_path%/glide",
+                    "defaults": {
+                        "mark": "logo.png",
+                        "markw": "30w",
+                        "markpad": "5w"
+                    },
+                    "presets": {
+                        "thumbnail": {
+                            "w": 300,
+                            "h": 300,
+                            "q": 75,
+                            "fit": "crop"
+                        },
+                        "hero": {
+                            "w": 1600,
+                            "h": 900,
+                            "q": 90,
+                            "fit": "max"
+                        }
+                    }
+                }
+            },
+            "default_server": "uploads"
+        }
+    }
+}

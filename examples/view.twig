@@ -1,0 +1,7 @@
+<img src="{{ glide('image.jpg', { width: 600 }) }}" />
+
+<img src="{{ 'image.jpg' | glide({ p: 'hero' }) }}" />
+
+{% glide 'image.jpg' { w: 600 } %}
+    <img src="{{ url }}" width="{{ width }}" height="{{ height }}">
+{% endglide %}

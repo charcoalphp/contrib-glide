@@ -1,0 +1,23 @@
+{
+    "routes": {
+        "templates": {
+            "glide-as-route-controller": {
+                "route": "/img/{path:.+}",
+                "route_controller": "charcoal/image/glide/http/glide",
+                "methods": [ "GET" ]
+            }
+        },
+        "actions": {
+            "glide-as-route-controller": {
+                "route": "/img/{path:.+}",
+                "route_controller": "charcoal/image/glide/http/glide",
+                "methods": [ "GET" ]
+            },
+            "glide-as-action-controller": {
+                "route": "/img/{path:.+}",
+                "controller": "charcoal/image/glide/http/glide",
+                "methods": [ "GET" ]
+            }
+        }
+    }
+}
